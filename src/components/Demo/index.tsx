@@ -1,5 +1,6 @@
 import ReactPaginate from 'react-paginate';
-import useUsers from '../hooks/useUsers';
+import useUsers from '../../hooks/useUsers';
+import { getChangingPage } from './selectors';
 
 function Demo() {
   const { users, initLoaded, loading, setOffset, limit, pageCount } = useUsers();
@@ -12,10 +13,13 @@ function Demo() {
 
   return (
     <div>
-      {initLoaded && loading ? <div>Loading...</div> : <div>Done.</div>}
+      {getChangingPage(initLoaded, loading) ? <div>Loading...</div> : <div>Done.</div>}
 
       <div
-        className={['ListView', ...(initLoaded && loading ? ['ListView--layered'] : [])].join(' ')}
+        className={[
+          'ListView',
+          ...(getChangingPage(initLoaded, loading) ? ['ListView--layered'] : []),
+        ].join(' ')}
       >
         {!initLoaded && <div>Loading users...</div>}
 
