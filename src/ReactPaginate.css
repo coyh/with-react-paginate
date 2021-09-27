@@ -1,0 +1,15 @@
+.ReactPaginate__page {
+  display: inline-block;
+  padding: 8px;
+  background-color: rgb(240, 240, 240);
+}
+
+.ReactPaginate__link {
+  color: rgb(142, 168, 245);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ReactPaginate__link--active {
+  color: royalblue;
+}
