@@ -1,6 +1,7 @@
 import ReactPaginate from 'react-paginate';
 import useUsers from '../../hooks/useUsers';
 import { getChangingPage } from './selectors';
+import classnames from 'classnames';
 
 function Demo() {
   const { users, initLoaded, loading, setOffset, limit, pageCount } = useUsers();
@@ -13,13 +14,10 @@ function Demo() {
 
   return (
     <div>
-      {getChangingPage(initLoaded, loading) ? <div>Loading...</div> : <div>Done.</div>}
-
       <div
-        className={[
-          'ListView',
-          ...(getChangingPage(initLoaded, loading) ? ['ListView--layered'] : []),
-        ].join(' ')}
+        className={classnames('ListView', {
+          'ListView--layered': getChangingPage(initLoaded, loading),
+        })}
       >
         {!initLoaded && <div>Loading users...</div>}
 
@@ -34,18 +32,20 @@ function Demo() {
         )}
       </div>
 
-      <ReactPaginate
-        pageCount={pageCount}
-        onPageChange={onPageChange}
-        pageClassName="ReactPaginate__page"
-        breakClassName="ReactPaginate__page"
-        previousClassName="ReactPaginate__page"
-        nextClassName="ReactPaginate__page"
-        pageLinkClassName="ReactPaginate__link"
-        activeLinkClassName="ReactPaginate__link ReactPaginate__link--active"
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-      />
+      {initLoaded && (
+        <ReactPaginate
+          pageCount={pageCount}
+          onPageChange={onPageChange}
+          pageClassName="ReactPaginate__page"
+          breakClassName="ReactPaginate__page"
+          previousClassName="ReactPaginate__page"
+          nextClassName="ReactPaginate__page"
+          pageLinkClassName="ReactPaginate__link"
+          activeLinkClassName="ReactPaginate__link ReactPaginate__link--active"
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+        />
+      )}
     </div>
   );
 }
