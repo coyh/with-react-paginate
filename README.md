@@ -6,6 +6,16 @@
 
 # 起動
 
-モックサーバー: npm run server
+```sh
+# ダウンロード
+https://github.com/coyh/with-react-paginate.git
 
-React: npm run start
+# リポジトリに移動
+cd with-react-paginate
+
+# モックサーバーを起動
+npm run server
+
+# フロントエンドを起動
+npm run start
+```
