@@ -1,8 +1,12 @@
-import axios, { AxiosResponse } from 'axios';
-import { User } from '../entity/user.entity';
+export const getUsers = async (params?: Record<string, string>) => {
+  const res = await fetch(
+    `http://localhost:8888/users?${params ? new URLSearchParams(params) : ''}`
+  );
 
-export const getUsers = (params?: Record<string, unknown>): Promise<AxiosResponse<User[]>> => {
-  return axios.get('http://localhost:8888/users', {
-    params: params,
-  });
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+
+  const headers = res.headers;
+  const data = await res.json();
+
+  return { headers, data };
 };

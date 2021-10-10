@@ -24,7 +24,6 @@ function Demo() {
         {users && (
           <ul>
             {users.map((user) => (
-              // <li key={user.id}>
               <li>
                 {user.id} {user.name}
               </li>

@@ -12,7 +12,7 @@ export default function useUsers() {
   const [pageCount, setPageCount] = useState(0);
 
   const loadUsers = useCallback(
-    async (params?: Record<string, unknown>) => {
+    async (params?: Record<string, string>) => {
       setLoading(true);
 
       const response = await getUsers(params);
@@ -22,15 +22,15 @@ export default function useUsers() {
       setUsers(response.data);
       setLoading(false);
       setInitLoaded(true);
-      setPageCount(Math.ceil(response.headers['x-total-count'] / limit));
+      setPageCount(Math.ceil(Number(response.headers.get('x-total-count')) / limit));
     },
     [limit]
   );
 
   useEffect(() => {
     loadUsers({
-      _start: offset,
-      _limit: limit,
+      _start: offset.toString(),
+      _limit: limit.toString(),
     });
   }, [offset, limit, loadUsers]);
 
