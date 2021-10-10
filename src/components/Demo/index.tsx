@@ -1,6 +1,6 @@
 import ReactPaginate from 'react-paginate';
 import useUsers from '../../hooks/useUsers';
-import { getChangingPage } from './selectors';
+import { getReloadingList } from './selectors';
 import classnames from 'classnames';
 
 function Demo() {
@@ -16,7 +16,7 @@ function Demo() {
     <div>
       <div
         className={classnames('ListView', {
-          'ListView--layered': getChangingPage(initLoaded, loading),
+          'ListView--layered': getReloadingList({ initLoaded, loading }),
         })}
       >
         {!initLoaded && <div>Loading users...</div>}
@@ -24,7 +24,8 @@ function Demo() {
         {users && (
           <ul>
             {users.map((user) => (
-              <li key={user.id}>
+              // <li key={user.id}>
+              <li>
                 {user.id} {user.name}
               </li>
             ))}

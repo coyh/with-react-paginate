@@ -1,3 +1,3 @@
-export const getChangingPage = (initLoaded: boolean, loading: boolean) => {
-  return initLoaded && loading;
+export const getReloadingList = (state: Record<string, unknown>) => {
+  return state.initLoaded && state.loading;
 };

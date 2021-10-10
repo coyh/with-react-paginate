@@ -4,16 +4,10 @@ body {
 
 .ListView {
   position: relative;
-
   height: 320px;
   border: 1px solid #000;
 }
 
 .ListView--layered {
   opacity: 0.2;
-  /* z-index: 100; */
-  /* position: absolute; */
-
-  /* background-color: red; */
-  /* background-color: rgba(184, 184, 184, 0.267); */
 }
